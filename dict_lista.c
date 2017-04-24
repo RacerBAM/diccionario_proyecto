@@ -109,9 +109,9 @@ char buscarPalabra (tipoNodo *lista, char *palabra) {
 	tipoNodo *aptNodo = lista;
 	while (aptNodo != NULL) {
 		if (strcmp(palabra, aptNodo->info.palIngles) == 1)
-			printf("%s : %s", aptNodo->info.palIngles, aptnodo->info.palEspanol);
+			printf("%s : %s", aptNodo->info.palIngles, aptNodo->info.palEspanol);
 		else if (strcmp(palabra, aptNodo->info.palEspanol) == 1)
-			printf("%s : %s", aptNodo->info.palIngles, aptnodo->info.palEspanol);
+			printf("%s : %s", aptNodo->info.palIngles, aptNodo->info.palEspanol);
 		else
 			aptNodo = aptNodo->siguiente;
 	}
@@ -121,18 +121,18 @@ void cerrarPrograma() {
 	exit(0);
 }
 
-lista eliminarPalabra(tipoNodo *lista, char palabra[]) {
+tipoNodo *eliminarPalabra(tipoNodo *lista, char palabra[]) {
 	if (lista == NULL)
 		printf("Lista vacía.");
 	tipoNodo *aptNodo = lista;
 	while (aptNodo != NULL) {
 		if (strcmp(palabra, aptNodo->info.palIngles) == 1) {
-			free(aptNodo->info.palIngles)
-			free(aptNodo->info.palEspanol)
+			free(aptNodo->info.palIngles);
+			free(aptNodo->info.palEspanol);
 		}
 		else if (strcmp(palabra, aptNodo->info.palEspanol) == 1) {
-			free(aptNodo->info.palIngles)
-			free(aptnodo->info.palEspanol);
+			free(aptNodo->info.palIngles);
+			free(aptNodo->info.palEspanol);
 		}
 		else
 			aptNodo = aptNodo->siguiente;
@@ -141,13 +141,14 @@ lista eliminarPalabra(tipoNodo *lista, char palabra[]) {
 }
 
 
-
-int main (int argc, char * argv[]){
-	printf("Escriba 0 y cerrar parar cerrar el programa.");
+int main (int argc, char argv[]){
+	printf("Escriba '0' y 'cerrar' parar cerrar el programa.");
 	if (argc == 0 && argv == "cerrar")
-		cerrarPrograma()
-	tipoNodo *lista;
-	lista = cargarDictToLista ("palabras.bin", lista);
-	imprimirLista(lista);
-	return 0;
+		cerrarPrograma();
+	else {
+		tipoNodo *lista;
+		lista = cargarDictToLista ("palabras.bin", lista);
+		imprimirLista(lista);
+		return 0;
+	}
 }
