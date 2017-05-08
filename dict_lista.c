@@ -137,6 +137,30 @@ tipoNodo *insertarLista(tipoNodo *lst, int pos, tipoDict elemento) {
 	return lst;
 }
 
+tipoNodo *agregarPalabra(tipoNodo *lst, tipoDict elemento) {
+	// agrega lexicograficamente
+	// tipoNodo *nodoTmp = crearNodo(elemento);
+	tipoNodo *p = lst;
+	int c = 0;
+	
+	while (p->siguiente != NULL) {
+		if (strcmp(elemento.palIngles, p.info.palIngles) > 0 || strcmp(elemento.palIngles, p->siguiente.info.palIngles) < 0) {
+			insertarLista(lst, c, elemento);
+			return lst;
+		}
+		else if (strcmp(elemento.palEspanol, p.info.palEspanol) > 0 || strcmp(elemento.palEspanol, p->siguiente.info.palEspanol) < 0) {
+			insertarLista(lst, c, elemento);
+			return lst;
+		}
+		else {
+			int c++;
+			p = p->siguiente;
+		}
+	}
+	printf("No se pudo agregar las palabras.\n");
+	return lst;
+}
+
 int buscarPos(tipoNodo *lista, char *palabra) {
 	// retorna el numero de la linea en la cual
 	// se encuentra la palabra especificada
@@ -225,6 +249,30 @@ tipoNodo *eliminarPalabra(tipoNodo *lista, char palabra[]) {
 	if (aptNodo->siguiente == NULL)
 		printf("La palabra no esta en el diccionario.\n");
 	return aptNodo;
+}
+
+char busquedaInteligente(tipoNodo *lista, char palabra[50]) {
+	char string[50];
+	tipoNodo *p = lst;
+	int compar = 0;
+	int i = 0;
+	int conta = 0;
+	while (p->siguiente != NULL) {
+		i = 0;
+		conta = 0;
+    		for(i = 0; i < strlen(palabra); i++) {
+        		if (palabra[i] == p.info.palIngles[i]) {
+            			conta++;
+        		}
+    		}
+		if (compar < conta) {
+			string = p.info.palIngles;
+			compar = conta;
+		}
+		p = p->siguiente;
+	}
+	printf("Quizas querias buscar %s?\n", string);
+	return string;
 }
 
 
