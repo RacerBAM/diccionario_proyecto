@@ -144,11 +144,11 @@ tipoNodo *agregarPalabra(tipoNodo *lst, tipoDict elemento) {
 	int c = 0;
 	
 	while (p->siguiente != NULL) {
-		if (strcmp(elemento.palIngles, p.info.palIngles) > 0 && strcmp(elemento.palIngles, p->siguiente.info.palIngles) < 0) {
+		if (strcmp(elemento.palIngles, p.info.palIngles) > 0 || strcmp(elemento.palIngles, p->siguiente.info.palIngles) < 0) {
 			insertarLista(lst, c, elemento);
 			return lst;
 		}
-		else if (strcmp(elemento.palEspanol, p.info.palEspanol) > 0 && strcmp(elemento.palEspanol, p->siguiente.info.palEspanol) < 0) {
+		else if (strcmp(elemento.palEspanol, p.info.palEspanol) > 0 || strcmp(elemento.palEspanol, p->siguiente.info.palEspanol) < 0) {
 			insertarLista(lst, c, elemento);
 			return lst;
 		}
